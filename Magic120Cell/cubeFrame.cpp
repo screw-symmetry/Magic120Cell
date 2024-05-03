@@ -305,10 +305,18 @@ CubeFrame::MouseUp(System::Object^  sender, System::Windows::Forms::MouseEventAr
 
 		if( -1 != stickerHash )
 		{
+			int clickedCell, dummy;
+			decodeStickerHash( stickerHash, clickedCell, dummy );
+
 			// What we do depends on ctrl, shift, left/right.
 			if( ShiftDown() && CtrlDown() )
 			{
 				m_puzzle->highlightSticker( stickerHash, false, left );
+			}
+			else if (ShiftDown() && AltDown())
+			{
+				CColor color = m_puzzle->getSettings().m_brushColor;
+				m_puzzle->changeCellColor( clickedCell, color );
 			}
 			else if( ShiftDown() )
 			{
@@ -318,9 +326,7 @@ CubeFrame::MouseUp(System::Object^  sender, System::Windows::Forms::MouseEventAr
 			{
 				if( CtrlDown() )
 				{
-					int clickedCell, dummy;
-					decodeStickerHash( stickerHash, clickedCell, dummy );
-					
+										
 					STwist twist;
 					if( m_puzzle->calcViewTwist( clickedCell, left, twist ) )
 						internalRotate( twist );
@@ -348,6 +354,8 @@ CubeFrame::KeyDown(System::Object^  sender, System::Windows::Forms::KeyEventArgs
 {
 	if( m_solving && e->KeyCode == Keys::Escape )
 		m_solving = false;
+	if ( e->KeyCode == Keys::F6 )
+		m_solving = m_solving;
 }
 
 void 
@@ -449,8 +457,10 @@ CubeFrame::ColorFace( int face, System::Drawing::Color c )
 {
 	// Setting background color?
 	CColor color( (float)c.R / 255, (float)c.G / 255, (float)c.B / 255, (float)c.A / 255 );
-	if( -1 == face )
+	if ( -1 == face )
 		m_renderer->setBackgroundColor( color );
+	else if (-2 == face)
+		m_puzzle->setBrushColor( color );
 	else
 		m_puzzle->setColor( face, color );
 

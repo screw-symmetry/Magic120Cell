@@ -285,6 +285,7 @@ namespace Magic120Cell
 		private Color color11 = Color.DarkSlateGray;
 		private Color color12 = Color.SandyBrown;
 		private Color colorBg = ColorF( 0, 0, 0 );
+		private Color colorBrush = ColorF( 1, 1, 1 );
 
 		// make a color from floats
 		private static Color ColorF( double r, double g, double b )
@@ -407,6 +408,15 @@ namespace Magic120Cell
 		{
 			get { return colorBg; }
 			set { colorBg = value; }
+		}
+
+		[Persistable]
+		[DisplayName( "Brush Color (Shift + Alt)" )]
+		[Category( "Coloring" )]
+		public Color ColorBrush
+		{
+			get { return colorBrush; }
+			set { colorBrush = value; }
 		}
 	}
 

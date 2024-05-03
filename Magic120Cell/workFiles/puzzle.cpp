@@ -195,6 +195,12 @@ CPuzzle::setColor( int i, CColor c )
 	puzzleChanged();
 }
 
+void
+CPuzzle::setBrushColor(CColor c)
+{
+	m_settings.m_brushColor = c;
+}
+
 void 
 CPuzzle::startRotate( const STwist & twist ) 
 {
@@ -322,6 +328,12 @@ CPuzzle::regenColors()
 {
 	int rand = std::rand();
 	m_state.setupFullColors( rand );
+}
+
+void
+CPuzzle::changeCellColor( int cell, CColor & color )
+{
+	m_state.setCellColor( cell, color );
 }
 
 bool 

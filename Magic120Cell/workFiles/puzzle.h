@@ -45,6 +45,7 @@ public:
 
 	// Set the colors.
 	void setColor( int i, CColor c );
+	void setBrushColor( CColor c );
 
 	//
 	// Methods to control twists/rotations.
@@ -81,6 +82,9 @@ public:
 
 	// Randomly regen colors.
 	void regenColors();
+
+	// Change color for individual cell
+	void changeCellColor( int cell, CColor & color );
 
 	// Are we solved?
 	bool isSolved() const;

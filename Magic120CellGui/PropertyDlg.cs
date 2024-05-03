@@ -20,5 +20,5 @@ namespace Magic120Cell
 			get { return this.properties.SelectedObject; }
 			set { this.properties.SelectedObject = value; }
 		}
-	}
+    }
 }

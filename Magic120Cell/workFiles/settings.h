@@ -58,6 +58,7 @@ public:
 	// NOTE: These mean different things depending on m_puzzle setting.
 	//		 They are used to fill out the full colors array in the state class.
 	CColor m_colors[12];
+	CColor m_brushColor;
 
 	// The index current cell to put in the "center" of the puzzle.
 	// XXX - This seems like it should not be in the settings.

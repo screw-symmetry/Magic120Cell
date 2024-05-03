@@ -282,6 +282,7 @@ namespace Magic120Cell
 				this.cube.ColorFace( 10, value.Color11 );
 				this.cube.ColorFace( 11, value.Color12 );
 				this.cube.ColorFace( -1, value.ColorBg );
+				this.cube.ColorFace( -2, value.ColorBrush );
 				this.cube.EnableRedraw = true;
 
 				if( this.lastSettings.R1 == 0.67532889 &&
@@ -519,6 +520,15 @@ namespace Magic120Cell
 				return;
 			this.Settings = current;
         }
+        private void menuSetCellBrushColor_Click(object sender, EventArgs e)
+        {
+			GuiSettings current = this.Settings;
+			PropertyDlg dlg = new PropertyDlg();
+			dlg.EditObject = current;
+			if( DialogResult.OK != dlg.ShowDialog( this ) )
+				return;
+			this.Settings = current;
+        }
 
         private void menuHilight_Click(object sender, EventArgs e)
         {
@@ -599,9 +609,10 @@ namespace Magic120Cell
 			if( this.cube != null )
 				this.cube.KeyUp();
 		}
-	}
 
-	public class DrawSurface : Control
+    }
+
+    public class DrawSurface : Control
 	{
 		public DrawSurface()
 		{
